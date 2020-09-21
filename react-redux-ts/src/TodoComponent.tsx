@@ -1,11 +1,12 @@
 import * as React from "react";
 
 type Props = {
+    onClickAddButton: (todo: string) => void;
+    todos: string[];
 };
 
 type State = {
     text: string;
-    todos: string[];
 };
 
 export default class extends React.Component<Props, State> {
@@ -13,12 +14,12 @@ export default class extends React.Component<Props, State> {
         super(props);
         this.state = {
             text: "",
-            todos: [],
         };
     }
 
     public render() {
-        const { text, todos } = this.state;
+        const { todos } = this.props;
+        const { text } = this.state;
         return (
             <div style={{ width: "500px", margin: "0 auth"}}>
                 <h1>Todo List</h1>
@@ -38,9 +39,8 @@ export default class extends React.Component<Props, State> {
     };
 
     private onClickAddButton = () => {
-        const { text, todos } = this.state;
-        this.setState({
-            todos: todos.concat([text]),
-        });
+        const { onClickAddButton } = this.props;
+        const { text } = this.state;
+        onClickAddButton(text);
     }
 }
