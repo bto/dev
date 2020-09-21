@@ -10,6 +10,10 @@ export interface RootState {
     todoState: TodoState;
 }
 
+declare module "react-redux" {
+    interface DefaultRootState extends RootState {}
+}
+
 const store: Redux.Store<TodoState, Redux.Action> = Redux.createStore(reducer);
 
 export default store;

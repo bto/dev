@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch: Redux.Dispatch<Redux.Action>): DispatchToP
     };
 }
 
-export default ReactRedux.connect<StateToProps, DispatchToProps, RootState>(
+export default ReactRedux.connect<StateToProps, DispatchToProps>(
     mapStateToProps,
     mapDispatchToProps
 )(TodoContainer);
