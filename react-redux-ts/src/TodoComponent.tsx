@@ -1,7 +1,6 @@
 import * as React from "react";
 
 type Props = {
-    onClickAddButton: (todo: string) => void;
 };
 
 type State = {
@@ -40,7 +39,6 @@ export default class extends React.Component<Props, State> {
 
     private onClickAddButton = () => {
         const { text, todos } = this.state;
-        todos.push(text);
         this.setState({
             todos: todos.concat([text]),
         });
