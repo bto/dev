@@ -1,6 +1,5 @@
 import React from 'react';
 import TodoComponent from "./TodoComponent";
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
