@@ -7,7 +7,6 @@ function App() {
     return (
         <div>
             <TodoComponent
-                todos={["foo", "bar"]}
                 onClickAddButton={(todo: string): void => {
                     console.log(todo);
                 }}

@@ -1,22 +1,25 @@
 import * as React from "react";
 
 type Props = {
-    todos: string[];
     onClickAddButton: (todo: string) => void;
 };
 
 type State = {
     text: string;
+    todos: string[];
 };
 
 export default class extends React.Component<Props, State> {
-    state = {
-        text: "",
-    };
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            text: "",
+            todos: [],
+        };
+    }
 
     public render() {
-        const { todos } = this.props;
-        const { text } = this.state;
+        const { text, todos } = this.state;
         return (
             <div style={{ width: "500px", margin: "0 auth"}}>
                 <h1>Todo List</h1>
@@ -36,8 +39,10 @@ export default class extends React.Component<Props, State> {
     };
 
     private onClickAddButton = () => {
-        const { onClickAddButton } = this.props;
-        const { text } = this.state;
-        onClickAddButton(text);
+        const { text, todos } = this.state;
+        todos.push(text);
+        this.setState({
+            todos: todos.concat([text]),
+        });
     }
 }
