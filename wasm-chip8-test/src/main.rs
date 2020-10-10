@@ -8,8 +8,7 @@ use log4rs;
 use termion::{AsyncReader, async_stdin, color};
 use termion::event::Key;
 use termion::input::TermRead;
-use termion::raw::IntoRawMode;
-use wasm_chip8::Chip8;
+use chip8::Chip8;
 
 const DISPLAY_HEIGHT: usize = 32;
 const DISPLAY_WIDTH: usize = 64;
@@ -19,8 +18,7 @@ fn main() {
     log4rs::init_file("logger.yml", Default::default()).unwrap();
 
     let mut chip8 = Chip8::new();
-    chip8.load_fontset();
-    load_rom(&mut chip8);
+    // load_rom(&mut chip8);
 
     let io_driver = IODriver::new();
     // let _stdout = stdout().into_raw_mode().unwrap();
@@ -31,11 +29,13 @@ fn main() {
     io_driver.display_restore();
 }
 
+/*
 fn load_rom(chip8: &mut Chip8) {
     let args: Vec<String> = env::args().collect();
     let mut f = File::open(args[1].as_str()).expect("File not found");
     f.read(&mut chip8.ram[START_ADDR..]).unwrap();
 }
+*/
 
 fn main_loop(chip8: &mut Chip8, io_driver: &IODriver, stdin: &mut AsyncReader) {
     loop {
